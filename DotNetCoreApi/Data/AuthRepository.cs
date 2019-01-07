@@ -24,8 +24,7 @@ namespace DotNetCoreApi.Data
             if (!VerifyPasswordhash(password, user.PasswordHash, user.PasswordSalt)) return null;
 
             CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
-
-            throw new NotImplementedException();
+            return user;            
         }
 
         private bool VerifyPasswordhash(string password, byte[] passwordHash, byte[] passwordSalt)
