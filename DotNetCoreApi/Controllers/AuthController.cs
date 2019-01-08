@@ -9,6 +9,7 @@ using DotNetCoreApi.Data;
 using DotNetCoreApi.DTO;
 using DotNetCoreApi.Dtos;
 using DotNetCoreApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -16,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace DotNetCoreApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -28,6 +30,7 @@ namespace DotNetCoreApi.Controllers
             _repo = repo;
             _config = config;
         }
+        [AllowAnonymous]
         [HttpPost("Register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
@@ -43,6 +46,7 @@ namespace DotNetCoreApi.Controllers
             var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
             return StatusCode(201);//Todo: fix later.
         }
+        [AllowAnonymous]
         [HttpPost("Login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {

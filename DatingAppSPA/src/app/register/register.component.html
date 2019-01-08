@@ -3,18 +3,10 @@
   <hr>
 
   <div class=form-group>
-    <input type="text" class="form-control" placeholder="UserName" required [(ngModel)]="model.UserName">
-
-    <div class="form-group">
-      <label for="favouriteValue">What Is your favourite value?</label>
-      <select class="form-control" id="favouriteValue">
-        <option *ngFor="let value of valuesFromHome" [value]="value" >{{value.name}}</option>
-      </select>
-
-    </div>
+    <input type="text" class="form-control" name="userName" placeholder="UserName" required [(ngModel)]="model.userName">
   </div>
   <div class="form-group">
-    <input type="password" class="form-control" placeholder="password" [(ngModel)]="model.password">
+    <input type="password" class="form-control" name="password" placeholder="password" required [(ngModel)]="model.password">
   </div>
 
   <div class="form-group text-center">
