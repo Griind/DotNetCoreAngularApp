@@ -4,11 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using DotNetCoreApi.Data;
 using DotNetCoreApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNetCoreApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -20,6 +22,7 @@ namespace DotNetCoreApi.Controllers
             this._context = context;
         }
         // GET api/values
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
@@ -40,7 +43,7 @@ namespace DotNetCoreApi.Controllers
         public void Post([FromBody] string value)
         {
         }
-
+        
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
