@@ -1,4 +1,5 @@
 ﻿using DotNetCoreApi.Data;
+using DotNetCoreApi.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -61,6 +62,7 @@ namespace DotNetCoreApi
                         var error = context.Features.Get<IExceptionHandlerFeature>();
                         if (error != null)
                         {
+                            context.Response.AddApplicationError(error.Error.Message);
                             await context.Response.WriteAsync(error.Error.Message);
                         }
                     });
